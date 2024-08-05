@@ -26,6 +26,13 @@
 
 	let map: L.Map | null = null
 
+	const TreeIcon = L.icon({
+		iconUrl: "tree-evergreen-fill.svg",
+		iconSize: [16, 16],
+		iconAnchor: [16, 32],
+		popupAnchor: [0, -32],
+	})
+
 	watch(
 		() => props.trees,
 		() => {
@@ -35,7 +42,7 @@
 				}
 
 				console.log("adding marker...")
-				L.marker([tree.latitude, tree.longitude])
+				L.marker([tree.latitude, tree.longitude], { icon: TreeIcon })
 					.bindPopup(`${tree.species_name_dutch} (${tree.planting_year})`)
 					.addTo(map)
 				markers.push(markerId(tree))
